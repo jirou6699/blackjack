@@ -3,6 +3,7 @@
 namespace blackJack;
 
 require_once('Card.php');
+require_once('FirstPlayer.php');
 
 class Game
 {
@@ -12,7 +13,8 @@ class Game
     }
     public function start()
     {
-        $Card = new Card($this->players);
-        return $this->players;
+        $card = new Card($this->players);
+		$cards = $card->getCards();
+		return 2;
     }
 }
