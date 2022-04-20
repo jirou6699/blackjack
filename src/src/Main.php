@@ -2,16 +2,18 @@
 
 namespace blackJack;
 
-require_once('Card.php');
+require_once('Player.php');
 
-$card = new Card(2);
-$cards = $card -> getCards();
+// ディーラーを含めた人数
+const PlAYERS = 2;
+$game = new Game(PlAYERS);
+$game->start();
 
-echo 'ブラックジャックを開始します。' . PHP_EOL;
-echo 'あなたの引いたカードは' . $cards[0][0] . 'の' . $cards[0][1] . 'です' . PHP_EOL;
-echo 'あなたの引いたカードは' . $cards[1][0] . 'の' . $cards[1][1] . 'です' . PHP_EOL;
-echo 'ディーラーの引いたカードは' . $cards[2][0] . 'の' . $cards[2][1] . 'です' . PHP_EOL;
-echo 'ディーラーの引いた2枚目のカードはわかりません。' . PHP_EOL;
+// echo 'ブラックジャックを開始します。' . PHP_EOL;
+// echo 'あなたの引いたカードは' . $cards[0][0] . 'の' . $cards[0][1] . 'です' . PHP_EOL;
+// echo 'あなたの引いたカードは' . $cards[1][0] . 'の' . $cards[1][1] . 'です' . PHP_EOL;
+// echo 'ディーラーの引いたカードは' . $cards[2][0] . 'の' . $cards[2][1] . 'です' . PHP_EOL;
+// echo 'ディーラーの引いた2枚目のカードはわかりません。' . PHP_EOL;
 // あなたの現在の得点は15です。カードを引きますか？（Y/N）
 // Y
 // あなたの引いたカードはスペードの５です。

@@ -2,8 +2,8 @@
 
 namespace blackJack;
 
-require_once('Card.php');
-require_once('FirstPlayer.php');
+require_once('Deck.php');
+require_once('Player.php');
 
 class Game
 {
@@ -11,10 +11,12 @@ class Game
     {
 
     }
-    public function start()
+    public function start(): int
     {
-        $card = new Card($this->players);
-		$cards = $card->getCards();
+		$trumpCards = new Deck();
+		$player = new Player($trumpCards);
+
+	// Todo 仮の返り値
 		return 2;
     }
 }
