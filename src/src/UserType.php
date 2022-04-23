@@ -7,7 +7,12 @@ abstract class UserType
     /**
      * @return array<int,array<int,int|string>>
      */
-    abstract public function getHand();
+    abstract public function getFirstHand();
+
+	/**
+	 * @return array<int,int|string>
+	 */
+    abstract public function addCard();
 
     /** @return string */
     abstract public function getName();

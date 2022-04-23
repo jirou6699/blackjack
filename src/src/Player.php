@@ -7,17 +7,37 @@ require_once('UserType.php');
 class Player extends UserType
 {
     /**
-     * @param array<int,array<int,int|string>>
      * @return array<int,array<int,int|string>>
      */
-    public function getHand(): array
+    public function getFirstHand(): array
     {
-        $randomCards = array_rand($this->trumpCards, 2);
-        $getHand = [];
-        foreach ($randomCards as $card) {
-            $getHand[] = $this->trumpCards[$card];
+        $cardNumbers = array_rand($this->trumpCards, 2);
+        $hand = [];
+        foreach ($cardNumbers as $num) {
+            $hand [] = $this->trumpCards[$num];
         }
-        return $getHand;
+        return $hand;
+    }
+
+    /**
+     * @return array<int,int|string>
+     */
+    public function addCard(): array
+    {
+        $addCardNumber = array_rand($this->trumpCards, 1);
+        $addCard = $this->trumpCards[$addCardNumber];
+        return $addCard;
+    }
+
+    /**
+     * @param array<int,array<int,int|string>> $hand
+     * @param array<int,int|string> $addCard
+     * @return array<int,array<int,int|string>>
+     */
+    public function getHand(array $hand, array $addCard)
+    {
+        $hand [] = $addCard;
+        return $hand;
     }
 
     /**
@@ -26,6 +46,5 @@ class Player extends UserType
     public function getName(): string
     {
         return 'あなた';
-
     }
 }
