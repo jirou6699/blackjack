@@ -12,19 +12,6 @@
 //     {
 //     }
 
-//     public function trumpCards(): array
-//     {
-//         $cards = [];
-//         foreach (self::SUITS as $suit) {
-//             $perCard = [];
-//             foreach (self::CARD_NUMBERS as $number) {
-//                 $perCard = [$suit, $number];
-//                 $cards[] = $perCard;
-//             }
-//         }
-//         return $cards;
-//     }
-
 //     public function getCards(): array
 //     {
 //         $allCards = $this->trumpCards();
