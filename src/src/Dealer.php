@@ -30,6 +30,18 @@ class Dealer extends UserType
     }
 
     /**
+     * @param array<int,array<int,int|string>> $hand
+     * @param array<int,int|string> $addCard
+     * @return array<int,array<int,int|string>>
+     */
+    public function getHand(array $hand, array $addCard)
+    {
+        $hand[] = $addCard;
+        return $hand;
+    }
+
+
+    /**
      * @return string
      */
     public function getName(): string
