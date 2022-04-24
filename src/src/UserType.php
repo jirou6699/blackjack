@@ -9,14 +9,14 @@ abstract class UserType
      */
     abstract public function getFirstHand();
 
-	/**
-	 * @return array<int,int|string>
-	 */
+    /**
+     * @return array<int,int|string>
+     */
     abstract public function addCard();
 
     /**
-	 * @return string
-	 */
+     * @return string
+     */
     abstract public function getName();
 
     /**

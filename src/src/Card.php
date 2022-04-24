@@ -35,12 +35,4 @@ class Card
         $totalPoints = array_sum($convertToRank);
         return $totalPoints;
     }
-
-    // /**
-    //  * @param array<int,int> $convertToRank
-    //  * @return int
-    //  */
-    // public function getTotalPoints(array $convertToRank)
-    // {
-    // }
 }

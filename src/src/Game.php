@@ -14,8 +14,7 @@ class Game
         $card = new Card();
         $trumpCards = $deck->trumpCards();
         $player = new Player($trumpCards);
-        $hand = $player->getFirstHand();
-        $totalPoints = $card->getTotalPoints($hand);
+        $playerHand = $player->getFirstHand();
 
     // Todo 仮の返り値
         return 2;

@@ -20,22 +20,22 @@ final class DealerTest extends TestCase
         $this->assertCount(2, $player->getFirstHand());
     }
 
-	public function testAddCard(): void
-	{
-		$deck = new Deck();
-		$trumpCards = $deck->trumpCards();
-		$player = new Dealer($trumpCards);
-		$this->assertCount(2, $player->addCard());
-	}
+    public function testAddCard(): void
+    {
+        $deck = new Deck();
+        $trumpCards = $deck->trumpCards();
+        $player = new Dealer($trumpCards);
+        $this->assertCount(2, $player->addCard());
+    }
 
-	public function testGetHand(): void
-	{
-		$deck = new Deck();
-		$trumpCards = $deck->trumpCards();
-		$player = new Dealer($trumpCards);
-		$this->assertSame([['ハート', '3'], ['クラブ', '10'], ['スペード', 'J']], $player->getHand([['ハート', '3'], ['クラブ', '10']], ['スペード', 'J']));
-		$this->assertSame([['クラブ', 'A'], ['クラブ', '10'], ['スペード', 'Q']], $player->getHand([['クラブ', 'A'], ['クラブ', '10']], ['スペード', 'Q']));
-	}
+    public function testGetHand(): void
+    {
+        $deck = new Deck();
+        $trumpCards = $deck->trumpCards();
+        $player = new Dealer($trumpCards);
+        $this->assertSame([['ハート', '3'], ['クラブ', '10'], ['スペード', 'J']], $player->getHand([['ハート', '3'], ['クラブ', '10']], ['スペード', 'J']));
+        $this->assertSame([['クラブ', 'A'], ['クラブ', '10'], ['スペード', 'Q']], $player->getHand([['クラブ', 'A'], ['クラブ', '10']], ['スペード', 'Q']));
+    }
 
     public function testGetName(): void
     {

@@ -6,6 +6,7 @@ require_once('Game.php');
 require_once('Deck.php');
 require_once('Player.php');
 require_once('Dealer.php');
+require_once('HandEvaluator.php');
 
 $game = new Game();
 $card = new Card();
@@ -29,14 +30,6 @@ foreach ($playerHand as $card) {
     echo $playerName . 'の引いたカードは' . $card[0] . 'の' . $card[1] . 'です。' . PHP_EOL;
 }
 
-// foreach ($dealerHand as $index => $card) {
-//     if ($index === 0) {
-//         echo $dealerName . 'の引いたカードは' . $card[0] . 'の' . $card[1] . 'です。' . PHP_EOL;
-//     } elseif ($index === 1) {
-//         echo $dealerName . 'の引いた2枚目のカードはわかりません。' . PHP_EOL;
-//     }
-// }
-
 echo $dealerName . 'の引いたカードは' . $dealerHand[0][0] . 'の' . $dealerHand[0][1] . 'です。' . PHP_EOL;
 echo $dealerName . 'の引いた2枚目のカードはわかりません。' . PHP_EOL;
 
@@ -57,24 +50,18 @@ echo $dealerName . 'が引いた2枚目のカードは' . $dealerHand[1][0] . '�
 echo $dealerName . 'の現在の得点は' . $dealerTotalPoints . 'です' . PHP_EOL;
 
 while (true) {
-    if($dealerTotalPoints <= 17) {
+    if ($dealerTotalPoints <= 17) {
         $dealerHand = $dealer->getHand($dealerHand, $dealerAddCard);
-        echo $dealerName . 'が引いたカードは' . $dealerAddCard[0]. 'の' . $dealerAddCard[1] . 'です。' . PHP_EOL;
+        echo $dealerName . 'が引いたカードは' . $dealerAddCard[0] . 'の' . $dealerAddCard[1] . 'です。' . PHP_EOL;
         $card = new Card();
         $dealerTotalPoints = $card->getTotalPoints($dealerHand);
-    }else{
-        break ;
+    } else {
+        break;
     }
 }
-
 
 echo $playerName . 'の現在の得点は' . $playerTotalPoints . 'です。' . PHP_EOL;
 echo $dealerName . 'の現在の得点は' . $dealerTotalPoints . 'です' . PHP_EOL;
 
-
-// ディーラーの現在の得点は12です。
-// ディーラーの引いたカードはハートのKです。
-// あなたの得点は20です。
-// ディーラーの得点は22です。
-// あなたの勝ちです！
-// ブラックジャックを終了します。
+echo HandEvaluator::getWinner($playerTotalPoints, $dealerTotalPoints) . PHP_EOL;
+echo 'ブラックジャックを終了します。' . PHP_EOL;
