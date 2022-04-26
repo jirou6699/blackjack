@@ -2,26 +2,24 @@
 
 namespace blackJack;
 
-require_once('Game.php');
 require_once('Deck.php');
 require_once('Player.php');
 require_once('Dealer.php');
 require_once('HandEvaluator.php');
+require_once('Card.php');
 
-$game = new Game();
 $card = new Card();
 $deck = new Deck();
-$trumpCards = $deck->trumpCards();
 
-$player =  new Player($trumpCards);
+$player = new Player($deck);
 $playerName = $player->getName();
-$playerHand = $player->getFirstHand();
+$playerHand = $player->drawCard();
 $playerAddCard = $player->addCard();
 $playerTotalPoints = $card->getTotalPoints($playerHand);
 
-$dealer =  new Dealer($trumpCards);
+$dealer =  new Dealer($deck);
 $dealerName = $dealer->getName();
-$dealerHand = $dealer->getFirstHand();
+$dealerHand = $dealer->drawCard();
 $dealerAddCard = $dealer->addCard();
 $dealerTotalPoints = $card->getTotalPoints($dealerHand);
 
@@ -44,6 +42,8 @@ while (true) {
     } elseif ($choice == 'N') {
         break;
     }
+    $player =  new Player($deck);
+    $playerAddCard = $player->addCard();
 }
 
 echo $dealerName . 'が引いた2枚目のカードは' . $dealerHand[1][0] . 'の' . $dealerHand[1][1] . 'です。' . PHP_EOL;
@@ -58,6 +58,8 @@ while (true) {
     } else {
         break;
     }
+    $dealer =  new Dealer($deck);
+    $dealerAddCard = $dealer->addCard();
 }
 
 echo $playerName . 'の現在の得点は' . $playerTotalPoints . 'です。' . PHP_EOL;

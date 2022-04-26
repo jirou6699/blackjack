@@ -4,10 +4,17 @@ namespace blackJack;
 
 abstract class UserType
 {
+    // /**
+    //  * @param array<int,array<int,int|string>> $trumpCards
+    //  */
+    public function __construct(protected Deck $deck)
+    {
+    }
+
     /**
      * @return array<int,array<int,int|string>>
      */
-    abstract public function getFirstHand();
+    abstract public function drawCard();
 
     /**
      * @return array<int,int|string>
@@ -19,10 +26,4 @@ abstract class UserType
      */
     abstract public function getName();
 
-    /**
-     * @param array<int,array<int,int|string>> $trumpCards
-     */
-    public function __construct(protected array $trumpCards)
-    {
-    }
 }

@@ -9,12 +9,13 @@ class Dealer extends UserType
     /**
      * @return array<int,array<int,int|string>>
      */
-    public function getFirstHand(): array
+    public function drawCard(): array
     {
-        $randomCards = array_rand($this->trumpCards, 2);
+        $trumpCard = $this->deck->trumpCards();
+        $randomCards = array_rand($trumpCard, 2);
         $getHand = [];
         foreach ($randomCards as $card) {
-            $getHand[] = $this->trumpCards[$card];
+            $getHand[] = $trumpCard[$card];
         }
         return $getHand;
     }
@@ -24,8 +25,9 @@ class Dealer extends UserType
      */
     public function addCard(): array
     {
-        $addCardNumber = array_rand($this->trumpCards, 1);
-        $addHand = $this->trumpCards[$addCardNumber];
+        $trumpCard = $this->deck->trumpCards();
+        $addCardNumber = array_rand($trumpCard, 1);
+        $addHand = $trumpCard[$addCardNumber];
         return $addHand;
     }
 

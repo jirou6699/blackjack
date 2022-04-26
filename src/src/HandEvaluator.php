@@ -15,12 +15,12 @@ class HandEvaluator
             $values[] = abs($point - 21);
         }
 
-        $winner = '引き分けです。' . PHP_EOL;
+        $winner = '引き分けです。';
 
         if ($values[0] < $values[1]) {
-            $winner = 'あなたの勝ちです!' . PHP_EOL;
+            $winner = 'あなたの勝ちです!';
         } elseif ($values[0] > $values[1]) {
-            $winner =  'ディーラーの勝ちです。' . PHP_EOL;
+            $winner =  'ディーラーの勝ちです。';
         }
         return $winner;
     }

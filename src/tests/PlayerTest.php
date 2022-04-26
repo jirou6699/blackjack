@@ -15,24 +15,21 @@ final class PlayerTest extends TestCase
     public function testGetFirstHand(): void
     {
         $deck = new Deck();
-        $trumpCards = $deck->trumpCards();
-        $player = new Player($trumpCards);
-        $this->assertCount(2, $player->getFirstHand());
+        $player = new Player($deck);
+        $this->assertCount(2, $player->drawCard());
     }
 
     public function testAddCard(): void
     {
         $deck = new Deck();
-        $trumpCards = $deck->trumpCards();
-        $player = new Player($trumpCards);
+        $player = new Player($deck);
         $this->assertCount(2, $player->addCard());
     }
 
     public function testGetHand(): void
     {
         $deck = new Deck();
-        $trumpCards = $deck->trumpCards();
-        $player = new Player($trumpCards);
+        $player = new Player($deck);
         $this->assertSame([['ハート', '3'], ['クラブ', '10'], ['スペード', 'J']], $player->getHand([['ハート', '3'], ['クラブ', '10']], ['スペード', 'J']));
         $this->assertSame([['クラブ', 'A'], ['クラブ', '10'], ['スペード', 'Q']], $player->getHand([['クラブ', 'A'], ['クラブ', '10']], ['スペード', 'Q']));
     }
@@ -40,8 +37,7 @@ final class PlayerTest extends TestCase
     public function testGetName(): void
     {
         $deck = new Deck();
-        $trumpCards = $deck->trumpCards();
-        $player = new Player($trumpCards);
+        $player = new Player($deck);
         $this->assertSame('あなた', $player->getName());
     }
 }

@@ -3,18 +3,20 @@
 namespace blackJack;
 
 require_once('UserType.php');
+require_once('Deck.php');
 
 class Player extends UserType
 {
     /**
      * @return array<int,array<int,int|string>>
      */
-    public function getFirstHand(): array
+    public function drawCard(): array
     {
-        $cardNumbers = array_rand($this->trumpCards, 2);
+        $trumpCard = $this->deck->trumpCards();
+        $cardNumbers = array_rand($trumpCard, 2);
         $hand = [];
         foreach ($cardNumbers as $num) {
-            $hand [] = $this->trumpCards[$num];
+            $hand [] = $trumpCard[$num];
         }
         return $hand;
     }
@@ -24,8 +26,9 @@ class Player extends UserType
      */
     public function addCard(): array
     {
-        $addCardNumber = array_rand($this->trumpCards, 1);
-        $addCard = $this->trumpCards[$addCardNumber];
+        $trumpCard = $this->deck->trumpCards();
+        $addCardNumber = array_rand($trumpCard, 1);
+        $addCard = $trumpCard[$addCardNumber];
         return $addCard;
     }
 

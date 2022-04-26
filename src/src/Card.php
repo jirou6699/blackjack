@@ -2,8 +2,6 @@
 
 namespace blackJack;
 
-require_once('Game.php');
-
 class Card
 {
     private const CARD_RANK = [
