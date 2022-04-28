@@ -16,7 +16,7 @@ final class PlayerTest extends TestCase
     {
         $deck = new Deck();
         $player = new Player($deck);
-        $this->assertCount(2, $player->drawCard());
+        $this->assertCount(2, $player->drawCards());
     }
 
     public function testAddCard(): void

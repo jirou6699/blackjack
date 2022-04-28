@@ -9,7 +9,7 @@ class Dealer extends UserType
     /**
      * @return array<int,array<int,int|string>>
      */
-    public function drawCard(): array
+    public function drawCards(): array
     {
         $trumpCard = $this->deck->trumpCards();
         $randomCards = array_rand($trumpCard, 2);
@@ -27,8 +27,8 @@ class Dealer extends UserType
     {
         $trumpCard = $this->deck->trumpCards();
         $addCardNumber = array_rand($trumpCard, 1);
-        $addHand = $trumpCard[$addCardNumber];
-        return $addHand;
+        $addCard = $trumpCard[$addCardNumber];
+        return $addCard;
     }
 
     /**
@@ -41,7 +41,6 @@ class Dealer extends UserType
         $hand[] = $addCard;
         return $hand;
     }
-
 
     /**
      * @return string

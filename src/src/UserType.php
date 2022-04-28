@@ -14,7 +14,7 @@ abstract class UserType
     /**
      * @return array<int,array<int,int|string>>
      */
-    abstract public function drawCard();
+    abstract public function drawCards();
 
     /**
      * @return array<int,int|string>

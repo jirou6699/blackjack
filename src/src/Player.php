@@ -10,7 +10,7 @@ class Player extends UserType
     /**
      * @return array<int,array<int,int|string>>
      */
-    public function drawCard(): array
+    public function drawCards(): array
     {
         $trumpCard = $this->deck->trumpCards();
         $cardNumbers = array_rand($trumpCard, 2);
@@ -37,7 +37,7 @@ class Player extends UserType
      * @param array<int,int|string> $addCard
      * @return array<int,array<int,int|string>>
      */
-    public function getHand(array $hand, array $addCard)
+    public function getHand(array $hand, array $addCard): array
     {
         $hand [] = $addCard;
         return $hand;

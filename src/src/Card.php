@@ -24,7 +24,7 @@ class Card
      * @param array<int,array<int,string>> $hand
      * @return int
      */
-    public function getTotalPoints(array $hand): int
+    public function getPoint(array $hand): int
     {
         $convertToRank = [];
         foreach ($hand as $card) {
