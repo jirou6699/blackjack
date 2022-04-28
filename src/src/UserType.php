@@ -4,9 +4,6 @@ namespace blackJack;
 
 abstract class UserType
 {
-    // /**
-    //  * @param array<int,array<int,int|string>> $trumpCards
-    //  */
     public function __construct(protected Deck $deck)
     {
     }

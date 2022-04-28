@@ -10,6 +10,7 @@ require_once('HandEvaluator.php');
 class Game
 {
     private const PRIMARY_CARD = 0;
+    private const SECONDARY_CARD = 1;
 
     /**
      *
@@ -32,7 +33,7 @@ class Game
         foreach ($dealerHand as $index => $card) {
             if ($index === self::PRIMARY_CARD) {
                 echo $dealerName . 'の引いたカードは' . $card[0] . 'の' . $card[1] . 'です。' . PHP_EOL;
-            }
+            } elseif($index === self::SECONDARY_CARD)
             echo $dealerName . 'の引いた2枚目のカードはわかりません' . PHP_EOL;
         }
 
