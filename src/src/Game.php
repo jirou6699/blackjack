@@ -9,9 +9,6 @@ require_once('HandEvaluator.php');
 
 class Game
 {
-    private const PRIMARY_CARD = 0;
-    private const SECONDARY_CARD = 1;
-
     /**
      *
      * @SuppressWarnings(PHPMD.StaticAccess)
@@ -30,12 +27,8 @@ class Game
             echo $playerName . 'の引いたカードは' . $card[0] . 'の' . $card[1] . 'です。' . PHP_EOL;
         }
 
-        foreach ($dealerHand as $index => $card) {
-            if ($index === self::PRIMARY_CARD) {
-                echo $dealerName . 'の引いたカードは' . $card[0] . 'の' . $card[1] . 'です。' . PHP_EOL;
-            } elseif($index === self::SECONDARY_CARD)
-            echo $dealerName . 'の引いた2枚目のカードはわかりません' . PHP_EOL;
-        }
+        echo $dealerName . 'が引いたカードは' . $dealerHand[0][0] . 'の' . $dealerHand[0][1] . 'です。' . PHP_EOL;
+        echo $dealerName . 'の引いた2枚目のカードはわかりません' . PHP_EOL;
 
         while (true) {
             echo $playerName . 'の現在の得点は' . $playerPoint . 'です。カードを引きますか？（Y/N）' . PHP_EOL;
