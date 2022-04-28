@@ -8,7 +8,7 @@ class HandEvaluator
      * @param int $playerPoint, $dealerPoint
      * @return string
      */
-    public static function getWinner(int $playerPoint, int $dealerPoint)
+    public static function getWinner(int $playerPoint, int $dealerPoint): string
     {
         $values = [];
         foreach ([$playerPoint, $dealerPoint] as $point) {

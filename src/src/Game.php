@@ -5,13 +5,17 @@ namespace blackJack;
 require_once('Player.php');
 require_once('Dealer.php');
 require_once('Card.php');
+require_once('HandEvaluator.php');
 
 class Game
 {
-    const DEALER = 'ディーラー';
-    const PRIMARY_CARD = 0;
+    private const PRIMARY_CARD = 0;
 
-    public function start(Player $player, Dealer $dealer, Card $card)
+    /**
+     *
+     * @SuppressWarnings(PHPMD.StaticAccess)
+     */
+    public function start(Player $player, Dealer $dealer, Card $card): void
     {
         $playerHand = $player->drawCards();
         $playerName = $player->getName();
@@ -28,18 +32,17 @@ class Game
         foreach ($dealerHand as $index => $card) {
             if ($index === self::PRIMARY_CARD) {
                 echo $dealerName . 'の引いたカードは' . $card[0] . 'の' . $card[1] . 'です。' . PHP_EOL;
-            } else {
-                echo $dealerName . 'の引いた2枚目のカードはわかりません' . PHP_EOL;
             }
+            echo $dealerName . 'の引いた2枚目のカードはわかりません' . PHP_EOL;
         }
 
         while (true) {
             echo $playerName . 'の現在の得点は' . $playerPoint . 'です。カードを引きますか？（Y/N）' . PHP_EOL;
             $string = trim(fgets(STDIN));
             if ($string == 'Y') {
-                $addCard = $player->addCard();
-                echo $playerName . 'の引いたカードは' . $addCard[0] . 'の' . $addCard[1] . 'です。' . PHP_EOL;
-                $playerHand = $player->getHand($playerHand, $addCard);
+                $playerAddCard = $player->addCard();
+                echo $playerName . 'の引いたカードは' . $playerAddCard[0] . 'の' . $playerAddCard[1] . 'です。' . PHP_EOL;
+                $playerHand = $player->getHand($playerHand, $playerAddCard);
                 $card = new Card();
                 $playerPoint = $card->getPoint($playerHand);
             } elseif ($string == 'N') {
@@ -47,10 +50,24 @@ class Game
             }
         }
 
-        
+        echo $dealerName . 'が引いた2枚目のカードは' . $dealerHand[1][0] . 'の' . $dealerHand[1][1] . 'です。' . PHP_EOL;
+        echo $dealerName . 'の現在の得点は' . $dealerPoint . 'です' . PHP_EOL;
 
-        // $hand = $dealer->drawCards();
-        // echo $dealer->getName() . 'が引いた2枚目のカードは' . $hand[1][0] . 'の' . $hand[1][1] . 'です。' . PHP_EOL;
-        // echo $dealer->getName() . 'の現在の得点は' . $card->getPoint($hand) . 'です' . PHP_EOL;
+        while (true) {
+            if ($dealerPoint <= 17) {
+                $dealerAddCard = $dealer->addCard();
+                $dealerHand = $dealer->getHand($dealerHand, $dealerAddCard);
+                echo $dealerName . 'が引いたカードは' . $dealerAddCard[0] . 'の' . $dealerAddCard[1] . 'です。' . PHP_EOL;
+                $card = new Card();
+                $dealerPoint = $card->getPoint($dealerHand);
+            }
+            break;
+        }
+
+        echo $playerName . 'の現在の得点は' . $playerPoint . 'です。' . PHP_EOL;
+        echo $dealerName . 'の現在の得点は' . $dealerPoint . 'です' . PHP_EOL;
+
+        echo HandEvaluator::getWinner($playerPoint, $dealerPoint) . PHP_EOL;
+        echo 'ブラックジャックを終了します。' . PHP_EOL;
     }
 }

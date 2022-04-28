@@ -16,10 +16,14 @@ final class HandEvaluatorTest extends TestCase
     {
         $handEvaluator = new HandEvaluator();
         $this->assertSame('あなたの勝ちです!', $handEvaluator->getWinner(22, 24));
+        $this->assertSame('あなたの勝ちです!', $handEvaluator->getWinner(21, 23));
         $this->assertSame('あなたの勝ちです!', $handEvaluator->getWinner(20, 25));
+        $this->assertSame('あなたの勝ちです!', $handEvaluator->getWinner(19, 25));
         $this->assertSame('ディーラーの勝ちです。', $handEvaluator->getWinner(14, 21));
         $this->assertSame('ディーラーの勝ちです。', $handEvaluator->getWinner(16, 23));
-        $this->assertSame('引き分けです。', $handEvaluator->getWinner(19, 23));
+        $this->assertSame('ディーラーの勝ちです。', $handEvaluator->getWinner(17, 24));
         $this->assertSame('引き分けです。', $handEvaluator->getWinner(10, 32));
+        $this->assertSame('引き分けです。', $handEvaluator->getWinner(11, 31));
+        $this->assertSame('引き分けです。', $handEvaluator->getWinner(19, 23));
     }
 }
