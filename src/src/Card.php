@@ -4,8 +4,8 @@ namespace blackJack;
 
 class Card
 {
+    private const CARD_A = 11;
     private const CARD_RANK = [
-        'A' => 1,
         '2' => 2,
         '3' => 3,
         '4' => 4,
@@ -17,20 +17,31 @@ class Card
         '10' => 10,
         'J' => 10,
         'Q' => 10,
-        'K' => 10
+        'K' => 10,
+        'A' => 11,
     ];
 
     /**
-     * @param array<int,array<int,string>> $hand
+     * @param array<int,array<int,int|string>> $hand
      * @return int
      */
     public function getPoint(array $hand): int
     {
-        $convertToRank = [];
+        $convertToRanks = [];
         foreach ($hand as $card) {
-            $convertToRank[] = self::CARD_RANK[$card[1]];
+            $convertToRanks[] = self::CARD_RANK[$card[1]];
         }
-        $totalPoints = array_sum($convertToRank);
-        return $totalPoints;
+        asort($convertToRanks);
+        $totalPoint = 0;
+        foreach($convertToRanks as $rank) {
+            if($totalPoint <= 10){
+                $totalPoint += $rank;
+            } elseif($rank === self::CARD_A ){
+                $totalPoint += 1;
+            } else {
+                $totalPoint += $rank;
+            }
+        }
+        return $totalPoint;
     }
 }

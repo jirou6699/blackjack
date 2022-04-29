@@ -7,10 +7,9 @@ require_once('Deck.php');
 
 class Player implements UserType
 {
-
-	public function __construct(private Deck $deck)
-	{
-	}
+    public function __construct(private Deck $deck)
+    {
+    }
 
     /**
      * @return array<int,array<int,int|string>>
@@ -21,7 +20,7 @@ class Player implements UserType
         $cardNumbers = array_rand($trumpCard, 2);
         $hand = [];
         foreach ($cardNumbers as $num) {
-            $hand [] = $trumpCard[$num];
+            $hand[] = $trumpCard[$num];
         }
         return $hand;
     }
@@ -44,7 +43,7 @@ class Player implements UserType
      */
     public function getHand(array $hand, array $addCard): array
     {
-        $hand [] = $addCard;
+        $hand[] = $addCard;
         return $hand;
     }
 
