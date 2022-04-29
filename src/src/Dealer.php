@@ -4,8 +4,12 @@ namespace blackJack;
 
 require_once('UserType.php');
 
-class Dealer extends UserType
+class Dealer implements UserType
 {
+	public function __construct(private Deck $deck)
+	{
+	}
+
     /**
      * @return array<int,array<int,int|string>>
      */

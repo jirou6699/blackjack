@@ -2,24 +2,20 @@
 
 namespace blackJack;
 
-abstract class UserType
+interface UserType
 {
-    public function __construct(protected Deck $deck)
-    {
-    }
-
     /**
      * @return array<int,array<int,int|string>>
      */
-    abstract public function drawCards();
+    public function drawCards();
 
     /**
      * @return array<int,int|string>
      */
-    abstract public function addCard();
+    public function addCard();
 
     /**
      * @return string
      */
-    abstract public function getName();
+    public function getName();
 }

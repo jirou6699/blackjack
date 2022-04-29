@@ -16,7 +16,6 @@ class HandEvaluator
         }
 
         $winner = '引き分けです。';
-
         if ($values[0] < $values[1]) {
             $winner = 'あなたの勝ちです!';
         } elseif ($values[0] > $values[1]) {

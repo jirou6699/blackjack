@@ -5,8 +5,13 @@ namespace blackJack;
 require_once('UserType.php');
 require_once('Deck.php');
 
-class Player extends UserType
+class Player implements UserType
 {
+
+	public function __construct(private Deck $deck)
+	{
+	}
+
     /**
      * @return array<int,array<int,int|string>>
      */

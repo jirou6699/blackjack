@@ -14,4 +14,4 @@ $player = new Player($deck);
 $dealer = new Dealer($deck);
 
 $game = new Game();
-$game->start($player, $dealer, $card); //$player->Name, $player->Hand...
+$game->start($player, $dealer, $card);
