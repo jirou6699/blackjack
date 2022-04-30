@@ -6,38 +6,14 @@ namespace blackJack\Test;
 
 use PHPUnit\Framework\TestCase;
 use blackJack\Card;
-use blackJack\Deck;
 
 require_once(__DIR__ . '/../src/Card.php');
 
 final class CardTest extends TestCase
 {
-	public function testGetTwoCards(): void
-	{
-		$deck = new Deck();
-		$card = new Card($deck);
-		$this->assertCount(2, $card->getTwoCards());
-	}
-
-	public function testAddCard(): void
-	{
-		$deck = new Deck();
-		$card = new Card($deck);
-		$this->assertCount(2, $card->addCard());
-	}
-
-	public function testGetHand(): void
-	{
-		$deck = new Deck();
-		$card = new Card($deck);
-		$this->assertSame([['ハート', '3'], ['クラブ', '10'], ['スペード', 'J']], $card->getHand([['ハート', '3'], ['クラブ', '10']], ['スペード', 'J']));
-		$this->assertSame([['クラブ', 'A'], ['クラブ', '10'], ['スペード', 'Q']], $card->getHand([['クラブ', 'A'], ['クラブ', '10']], ['スペード', 'Q']));
-	}
-
     public function testGetPoint(): void
     {
-		$deck = new Deck();
-		$card = new Card($deck);
+        $card = new Card();
         // カード2枚の合計
         $this->assertSame(4, $card->getPoint([['スペード', '2'], ['クラブ', '2']]));
         $this->assertSame(9, $card->getPoint([['スペード', '2'], ['クラブ', '7']]));
