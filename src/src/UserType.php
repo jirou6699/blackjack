@@ -4,6 +4,11 @@ namespace blackJack;
 
 interface UserType
 {
+	/**
+	 * @return string
+	 */
+	public function getName();
+
     /**
      * @return array<int,array<int,int|string>>
      */
@@ -12,10 +17,10 @@ interface UserType
     /**
      * @return array<int,int|string>
      */
-    public function addCard();
+    public function hitStay();
 
-    /**
-     * @return string
-     */
-    public function getName();
+	// public function appCard();
+
+
+
 }

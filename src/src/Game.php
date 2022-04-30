@@ -22,27 +22,7 @@ class Game
         $playerPoint = $card->getPoint($playerHand);
         $dealerPoint = $card->getPoint($dealerHand);
 
-        echo 'ブラックジャックを開始します。' . PHP_EOL;
-        foreach ($playerHand as $card) {
-            echo $playerName . 'の引いたカードは' . $card[0] . 'の' . $card[1] . 'です。' . PHP_EOL;
-        }
 
-        echo $dealerName . 'が引いたカードは' . $dealerHand[0][0] . 'の' . $dealerHand[0][1] . 'です。' . PHP_EOL;
-        echo $dealerName . 'の引いた2枚目のカードはわかりません' . PHP_EOL;
-
-        while (true) {
-            echo $playerName . 'の現在の得点は' . $playerPoint . 'です。カードを引きますか？（Y/N）' . PHP_EOL;
-            $string = trim(fgets(STDIN));
-            if ($string == 'Y') {
-                $playerAddCard = $player->addCard();
-                echo $playerName . 'の引いたカードは' . $playerAddCard[0] . 'の' . $playerAddCard[1] . 'です。' . PHP_EOL;
-                $playerHand = $player->getHand($playerHand, $playerAddCard);
-                $card = new Card();
-                $playerPoint = $card->getPoint($playerHand);
-            } elseif ($string == 'N') {
-                break;
-            }
-        }
 
         echo $dealerName . 'が引いた2枚目のカードは' . $dealerHand[1][0] . 'の' . $dealerHand[1][1] . 'です。' . PHP_EOL;
         echo $dealerName . 'の現在の得点は' . $dealerPoint . 'です' . PHP_EOL;

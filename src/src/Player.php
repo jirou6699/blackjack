@@ -3,49 +3,16 @@
 namespace blackJack;
 
 require_once('UserType.php');
-require_once('Deck.php');
 
 class Player implements UserType
 {
-    public function __construct(private Deck $deck)
+    // private $primaryCards;
+
+    public function __construct(private Card $card)
     {
     }
 
-    /**
-     * @return array<int,array<int,int|string>>
-     */
-    public function drawCards(): array
-    {
-        $trumpCard = $this->deck->trumpCards();
-        $cardNumbers = array_rand($trumpCard, 2);
-        $hand = [];
-        foreach ($cardNumbers as $num) {
-            $hand[] = $trumpCard[$num];
-        }
-        return $hand;
-    }
-
-    /**
-     * @return array<int,int|string>
-     */
-    public function addCard(): array
-    {
-        $trumpCard = $this->deck->trumpCards();
-        $addCardNumber = array_rand($trumpCard, 1);
-        $addCard = $trumpCard[$addCardNumber];
-        return $addCard;
-    }
-
-    /**
-     * @param array<int,array<int,int|string>> $hand
-     * @param array<int,int|string> $addCard
-     * @return array<int,array<int,int|string>>
-     */
-    public function getHand(array $hand, array $addCard): array
-    {
-        $hand[] = $addCard;
-        return $hand;
-    }
+    $primaryCards = $card->getPrimaryCards();
 
     /**
      * @return string
@@ -53,5 +20,32 @@ class Player implements UserType
     public function getName(): string
     {
         return 'あなた';
+    }
+
+    public function drawCards()
+    {
+        echo 'ブラックジャックを開始します。' . PHP_EOL;
+        foreach ($this->card->getPrimaryCards() as $card) {
+            echo self::getName() . 'の引いたカードは' . $card[0] . 'の' . $card[1] . 'です。' . PHP_EOL;
+        }
+    }
+
+    public function hitStay()
+    {
+        echo self::getName() . 'の現在の得点は' . $this->card->getPoint() . 'です。カードを引きますか？（Y/N）' . PHP_EOL;
+        $string = trim(fgets(STDIN));
+        while (true) {
+            if ($string == 'Y') {
+                $newCard = $this->card->getOneCard();
+                echo self::getName() . 'の引いたカードは' . $newCard[0] . 'の' . $newCard[1] . 'です。' . PHP_EOL;
+                $hand = $this->card->addedCards($this->card->getPrimaryCards(), $newCard);
+                // $card = new Card();
+                $playerPoint = $this->card->getPoint();
+                echo self::getName() . 'の現在の得点は' . $playerPoint . 'です。カードを引きますか？（Y/N）' . PHP_EOL;
+                $string = trim(fgets(STDIN));
+            } elseif ($string == 'N') {
+                break;
+            }
+        }
     }
 }
