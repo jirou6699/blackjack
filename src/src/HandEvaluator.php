@@ -15,11 +15,11 @@ class HandEvaluator
             $values[] = abs($point - 21);
         }
 
-        $winner = '引き分けです。';
+        $winner = '引き分けです。' . PHP_EOL . 'ブラックジャックを終了します。';
         if ($values[0] < $values[1]) {
-            $winner = 'あなたの勝ちです!';
+            $winner = 'あなたの勝ちです!' . PHP_EOL . 'ブラックジャックを終了します。';
         } elseif ($values[0] > $values[1]) {
-            $winner =  'ディーラーの勝ちです。';
+            $winner =  'ディーラーの勝ちです。' . PHP_EOL . 'ブラックジャックを終了します。';
         }
         return $winner;
     }
