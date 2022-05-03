@@ -6,9 +6,12 @@ require_once('UserType.php');
 require_once('Card.php');
 require_once('Deck.php');
 
-class Player implements UserType
+class FirstPlayer implements UserType
 {
+	public string $name  = 'あなた';
     public int $totalPoint = 0;
+	
+
 
     public function __construct(private Card $card, private Deck $deck)
     {

@@ -7,6 +7,7 @@ require_once('UserType.php');
 class Dealer implements UserType
 {
     public int $totalPoint = 0;
+	public string $name = 'ディーラー';
 
     public function __construct(private Card $card, private Deck $deck)
     {
