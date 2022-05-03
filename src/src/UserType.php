@@ -5,19 +5,20 @@ namespace blackJack;
 interface UserType
 {
     /**
-     * @return array<int,array<int,int|string>>
+     * @param array<int,array<int,int|string>> $cards
+     * @return void
      */
     public function drawCards(array $cards);
 
     /**
-     * @return array<int,int|string>
+     * @param array<int,array<int,int|string>> $hand
+     * @return void
      */
     public function hitStay(array $hand);
 
-    // /**
-    //  * @return string
-    //  */
-    // public function getName();
-
-	public function getTotalPoint(array $hand);
+    /**
+     * @param array<int,array<int,int|string>> $hand
+     * @return int
+     */
+    public function getTotalPoint(array $hand);
 }

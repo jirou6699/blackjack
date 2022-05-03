@@ -14,8 +14,7 @@ final class CardTest extends TestCase
 {
     public function testGetPoint(): void
     {
-		$deck = new Deck();
-        $card = new Card($deck);
+        $card = new Card();
         // カード2枚の合計
         $this->assertSame(4, $card->getPoint([['スペード', '2'], ['クラブ', '2']]));
         $this->assertSame(9, $card->getPoint([['スペード', '2'], ['クラブ', '7']]));
@@ -43,7 +42,7 @@ final class CardTest extends TestCase
         $this->assertSame(21, $card->getPoint([['スペード', '5'], ['スペード', '5'],['クラブ', 'K'],['ダイヤ', 'A']]));
         $this->assertSame(20, $card->getPoint([['ハート', 'A'], ['クラブ', '2'],['スペード', '3'],['ダイヤ', '4']]));
         $this->assertSame(14, $card->getPoint([['ハート', 'A'], ['クラブ', 'A'],['スペード', 'A'],['ダイヤ', 'A']]));
-		// カード5枚の時
+        // カード5枚の時
         $this->assertSame(15, $card->getPoint([['ハート', 'A'], ['クラブ', 'A'],['スペード', 'A'],['ダイヤ', 'A'], ['ダイヤ', 'A']]));
     }
 }
