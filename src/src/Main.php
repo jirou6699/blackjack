@@ -6,6 +6,8 @@ require_once('Deck.php');
 require_once('Card.php');
 require_once('FirstPlayer.php');
 require_once('SecondPlayer.php');
+require_once('ThirdPlayer.php');
+require_once('FourthPlayer.php');
 require_once('Dealer.php');
 require_once('HandEvaluator.php');
 
@@ -13,41 +15,33 @@ require_once('HandEvaluator.php');
 $deck = new Deck();
 $card = new Card();
 
-// $player = new FirstPlayer($card, $deck);
-// $playerCards = $deck->getTwoCards();
-// $player->drawCards($playerCards);
-// $player->HitStay($playerCards);
+$firstPlayer = new FirstPlayer($card, $deck);
+$secondPlayer = new SecondPlayer($card, $deck);
+$thirdPlayer = new ThirdPlayer($card, $deck);
+$fourthPlayer = new FourthPlayer($card, $deck);
+$dealer = new Dealer($card, $deck);
 
-// $secondPlayer = new SecondPlayer($card, $deck);
-// $secondPlayerCards = $deck->getTwoCards();
-// $secondPlayer->drawCards($secondPlayerCards);
-// $secondPlayer->HitStay($secondPlayerCards);
+$players = [$firstPlayer, $secondPlayer, $thirdPlayer, $fourthPlayer, $dealer];
 
-// $dealer = new Dealer($card, $deck);
-// $dealerCards = $deck->getTwoCards();
-// $dealer->drawCards($dealerCards);
-// $dealer->HitStay($dealerCards);
-
-// $player->showTotalPoint();
-// $dealer->showTotalPoint();
-// $secondPlayer->showTotalPoint();
-
-// echo HandEvaluator::getWinner($player->totalPoint, $dealer->totalPoint) . PHP_EOL;
-
-$players = [new FirstPlayer($card, $deck), new SecondPlayer($card, $deck), new Dealer($card, $deck)];
-
-$allPlayersPoint = [];
 foreach ($players as $player) {
     $playerCards = $deck->getTwoCards();
     $player->drawCards($playerCards);
-    $player->HitStay($playerCards);
-    $name = $player->name;
-    $playerPoint = [$player->name => $player->totalPoint];
-    $allPlayersPoint[] = $playerPoint;
+}
+
+foreach ($players as $player) {
+    $player->HitStay();
 }
 
 foreach ($players as $player) {
     $player->showTotalPoint();
 }
 
-echo HandEvaluator::getWinner($allPlayersPoint) . PHP_EOL;
+$allPlayersPoint = [];
+foreach ($players as $player) {
+    $name = $player->name;
+    $playerPoint = [$player->name => $player->totalPoint];
+    $allPlayersPoint[] = $playerPoint;
+}
+
+$handEvaluator = new HandEvaluator($allPlayersPoint);
+$handEvaluator->getWinner();

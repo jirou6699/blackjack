@@ -37,8 +37,6 @@ class Deck
         return $hand;
     }
 
-
-
     /**
      * @return array<int,int|string>
      */

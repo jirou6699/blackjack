@@ -6,9 +6,9 @@ require_once('UserType.php');
 require_once('Card.php');
 require_once('Deck.php');
 
-class SecondPlayer implements UserType
+class FourthPlayer implements UserType
 {
-	public string $name = 'さとうさん';
+	public string $name = 'おがたさん';
 	public int $totalPoint = 0;
 	public array $hand;
 
@@ -22,7 +22,7 @@ class SecondPlayer implements UserType
 	public function drawCards(array $cards): void
 	{
 		foreach ($cards as $card) {
-			echo $this->name .'の引いたカードは' . $card[0] . 'の' . $card[1] . 'です。' . PHP_EOL;
+			echo $this->name . 'の引いたカードは' . $card[0] . 'の' . $card[1] . 'です。' . PHP_EOL;
 		}
 		$this->hand = $cards;
 		echo PHP_EOL;
@@ -35,14 +35,14 @@ class SecondPlayer implements UserType
 	public function hitStay(): void
 	{
 		$this->totalPoint = $this->card->getPoint($this->hand);
-		echo $this->name .'の現在の得点は' . $this->totalPoint . 'です' . PHP_EOL;
+		echo $this->name . 'の現在の得点は' . $this->totalPoint . 'です' . PHP_EOL;
 		while (true) {
 			if ($this->totalPoint < 17) {
 				$card = $this->deck->getOneCard();
-				echo $this->name .'が引いたカードは' . $card[0] . 'の' . $card[1] . 'です。' . PHP_EOL;
+				echo $this->name . 'が引いたカードは' . $card[0] . 'の' . $card[1] . 'です。' . PHP_EOL;
 				$this->hand[] = $card;
 				$this->totalPoint = $this->card->getPoint($this->hand);
-			} elseif($this->totalPoint > 17) {
+			} elseif ($this->totalPoint > 17) {
 				break;
 			}
 		}
@@ -50,11 +50,9 @@ class SecondPlayer implements UserType
 		sleep(3);
 	}
 
-
-
 	public function showTotalPoint(): void
 	{
-		echo $this->name .'の得点は' . $this->totalPoint . 'です' . PHP_EOL;
+		echo $this->name . 'の得点は' . $this->totalPoint . 'です' . PHP_EOL;
 		sleep(1);
 	}
 }

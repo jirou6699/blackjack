@@ -7,7 +7,8 @@ require_once('UserType.php');
 class Dealer implements UserType
 {
     public int $totalPoint = 0;
-	public string $name = 'ディーラー';
+    public string $name = 'ディーラー';
+    public array $hand;
 
     public function __construct(private Card $card, private Deck $deck)
     {
@@ -25,38 +26,35 @@ class Dealer implements UserType
                 echo 'ディーラーの引いたカードは' . $card[0] . 'の' . $card[1] . 'です。' . PHP_EOL;
             }
         }
+        $this->hand = $cards;
+        echo PHP_EOL;
+        sleep(2);
     }
 
     /**
      * @param array<int,array<int,int|string>> $hand
      */
-    public function hitStay(array $hand): void
+    public function hitStay(): void
     {
-        echo 'ディーラーが引いた2枚目のカードは' . $hand[1][0] . 'の' . $hand[1][1] . 'です。' . PHP_EOL;
-        $this->totalPoint += $this->card->getPoint($hand);
+        echo 'ディーラーが引いた2枚目のカードは' . $this->hand[1][0] . 'の' . $this->hand[1][1] . 'です。' . PHP_EOL;
+        $this->totalPoint = $this->card->getPoint($this->hand);
         echo 'ディーラーの現在の得点は' . $this->totalPoint . 'です' . PHP_EOL;
         while (true) {
-            if ($this->getTotalPoint($hand) <= 17) {
+            if ($this->card->getPoint($this->hand) < 17) {
                 $card = $this->deck->getOneCard();
                 echo 'ディーラーが引いたカードは' . $card[0] . 'の' . $card[1] . 'です。' . PHP_EOL;
-                $hand[] = $card;
-                $this->totalPoint = $this->getTotalPoint($hand);
+                $this->hand[] = $card;
+                $this->totalPoint = $this->card->getPoint($this->hand);
             }
             break;
         }
-    }
-
-    /**
-     * @param array<int,array<int,int|string>> $hand
-     * @return int
-     */
-    public function getTotalPoint(array $hand): int
-    {
-        return $this->card->getPoint($hand);
+        echo PHP_EOL;
+        sleep(3);
     }
 
     public function showTotalPoint(): void
     {
         echo 'ディーラーの得点は' . $this->totalPoint . 'です' . PHP_EOL;
+        sleep(1);
     }
 }
