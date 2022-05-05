@@ -4,15 +4,11 @@ namespace blackJack;
 
 require_once('UserType.php');
 
-class Dealer implements UserType
+class Dealer extends UserType
 {
-    public int $totalPoint = 0;
     public string $name = 'ディーラー';
+    public int $totalPoint = 0;
     public array $hand;
-
-    public function __construct(private Card $card, private Deck $deck)
-    {
-    }
 
     /**
      * @param array<int,array<int,int|string>> $cards

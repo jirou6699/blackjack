@@ -28,7 +28,7 @@ class Deck
      */
     public function getTwoCards(): array
     {
-        $trumpCard = self::trumpCards();
+        $trumpCard = $this->trumpCards();
         $cardNumbers = array_rand($trumpCard, 2);
         $hand = [];
         foreach ($cardNumbers as $num) {
@@ -42,7 +42,7 @@ class Deck
      */
     public function getOneCard(): array
     {
-        $trumpCard = self::trumpCards();
+        $trumpCard = $this->trumpCards();
         $addCardNumber = array_rand($trumpCard, 1);
         $addCard = $trumpCard[$addCardNumber];
         return $addCard;

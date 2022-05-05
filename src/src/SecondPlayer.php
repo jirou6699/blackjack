@@ -3,18 +3,12 @@
 namespace blackJack;
 
 require_once('UserType.php');
-require_once('Card.php');
-require_once('Deck.php');
 
-class SecondPlayer implements UserType
+class SecondPlayer extends UserType
 {
 	public string $name = 'さとうさん';
 	public int $totalPoint = 0;
 	public array $hand;
-
-	public function __construct(private Card $card, private Deck $deck)
-	{
-	}
 
 	/**
 	 * @param array<int,array<int,int|string>> $cards

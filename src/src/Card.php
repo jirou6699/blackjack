@@ -4,8 +4,7 @@ namespace blackJack;
 
 class Card
 {
-    private const MIN_MAX = 10;
-    private const CARD_A = 11;
+    private const RANK_AMOUNT = 10;
     private const CARD_RANK = [
         '2' => 2,
         '3' => 3,
@@ -35,9 +34,9 @@ class Card
         asort($convertToRanks);
         $totalPoint = 0;
         foreach ($convertToRanks as $rank) {
-            if ($totalPoint <= self::MIN_MAX || $rank !== self::CARD_A) {
+            if ($totalPoint <= self::RANK_AMOUNT || $rank !== self::CARD_RANK['A']) {
                 $totalPoint += $rank;
-            } elseif ($rank === self::CARD_A) {
+            } elseif ($rank === self::CARD_RANK['A']) {
                 $totalPoint += 1;
             }
         }
