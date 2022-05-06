@@ -5,6 +5,7 @@ namespace blackJack;
 require_once('UserType.php');
 require_once('Standard.php');
 require_once('DoublingDown.php');
+require_once('Surrender.php');
 require_once('HandAction.php');
 
 class FirstPlayer extends UserType
@@ -41,6 +42,7 @@ class FirstPlayer extends UserType
 			$action = new HandAction($type);
 			$action->hitStay($this->hand, $this->name);
 			$this->totalPoint = $type::$totalPoint;
+			$this->hand = $type::$hand;
 		} else {
 		}
 	}
@@ -60,6 +62,7 @@ class FirstPlayer extends UserType
 			return new DoublingDown($this->card, $this->deck);
 		} elseif ($num === 2) {
 			// サレンダー
+			return new Surrender($this->card, $this->deck);
 		} elseif ($num === 3) {
 			return new Standard($this->card, $this->deck);
 		} elseif ($num === 4) {
@@ -69,7 +72,11 @@ class FirstPlayer extends UserType
 
 	public function showTotalPoint(): void
 	{
-		echo $this->name . 'の得点は' . $this->totalPoint . 'です' . PHP_EOL;
+		if($this->totalPoint === 0){
+			echo $this->name . 'は勝負を降りました。' . PHP_EOL;
+		} else {
+			echo $this->name . 'の得点は' . $this->totalPoint . 'です' . PHP_EOL;
+		}
 		sleep(1);
 	}
 }

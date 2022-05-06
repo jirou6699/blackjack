@@ -17,7 +17,9 @@ class HandEvaluator
         foreach ($playersValue as $playerPoint) {
             foreach ($playerPoint as $name => $point) {
                 $judgement = $name . 'は引き分けました。' . PHP_EOL;
-                if ($point < $dealerValue['ディーラー']) {
+				if($point === 21){
+					$judgement =  $name . 'はゲームを降りました' . PHP_EOL;
+				} elseif ($point < $dealerValue['ディーラー']) {
                     $judgement = $name . 'が勝ちました!' . PHP_EOL;
                 } elseif ($point > $dealerValue['ディーラー']) {
                     $judgement =  $name . 'は負けました。' . PHP_EOL;
