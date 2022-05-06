@@ -19,9 +19,9 @@ $firstPlayer = new FirstPlayer($card, $deck);
 $secondPlayer = new SecondPlayer($card, $deck);
 $thirdPlayer = new ThirdPlayer($card, $deck);
 $fourthPlayer = new FourthPlayer($card, $deck);
-$dealer = new Dealer($card, $deck);
+$lastPlayer = new Dealer($card, $deck);
 
-$players = [$firstPlayer, $secondPlayer, $thirdPlayer, $fourthPlayer, $dealer];
+$players = [$firstPlayer, $secondPlayer, $thirdPlayer, $fourthPlayer, $lastPlayer];
 
 foreach ($players as $player) {
     $playerCards = $deck->getTwoCards();
@@ -29,7 +29,7 @@ foreach ($players as $player) {
 }
 
 foreach ($players as $player) {
-    $player->HitStay();
+    $player->getHand();
 }
 
 foreach ($players as $player) {

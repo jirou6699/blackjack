@@ -25,7 +25,7 @@ class HandEvaluator
                 echo $judgement;
             }
         }
-        echo 'ブラックジャックを終了します。';
+        echo 'ブラックジャックを終了します。' . PHP_EOL;
     }
 
     public function convertToValues()

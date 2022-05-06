@@ -42,4 +42,9 @@ class Card
         }
         return $totalPoint;
     }
+
+    // public function getRank(): array
+    // {
+
+    // }
 }

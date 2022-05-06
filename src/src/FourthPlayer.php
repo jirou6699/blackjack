@@ -26,7 +26,7 @@ class FourthPlayer extends UserType
 	/**
 	 * @param array<int,array<int,int|string>> $hand
 	 */
-	public function hitStay(): void
+	public function getHand(): void
 	{
 		$this->totalPoint = $this->card->getPoint($this->hand);
 		echo $this->name . 'の現在の得点は' . $this->totalPoint . 'です' . PHP_EOL;

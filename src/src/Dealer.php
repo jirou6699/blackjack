@@ -30,13 +30,13 @@ class Dealer extends UserType
     /**
      * @param array<int,array<int,int|string>> $hand
      */
-    public function hitStay(): void
+    public function getHand(): void
     {
         echo 'ディーラーが引いた2枚目のカードは' . $this->hand[1][0] . 'の' . $this->hand[1][1] . 'です。' . PHP_EOL;
         $this->totalPoint = $this->card->getPoint($this->hand);
         echo 'ディーラーの現在の得点は' . $this->totalPoint . 'です' . PHP_EOL;
         while (true) {
-            if ($this->card->getPoint($this->hand) < 17) {
+            if ($this->totalPoint < 17) {
                 $card = $this->deck->getOneCard();
                 echo 'ディーラーが引いたカードは' . $card[0] . 'の' . $card[1] . 'です。' . PHP_EOL;
                 $this->hand[] = $card;

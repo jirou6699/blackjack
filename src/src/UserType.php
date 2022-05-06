@@ -21,5 +21,5 @@ abstract class UserType
      * @param array<int,array<int,int|string>> $hand
      * @return void
      */
-    abstract public function hitStay();
+    abstract public function getHand();
 }
