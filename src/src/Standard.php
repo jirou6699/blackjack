@@ -6,9 +6,10 @@ require_once('Action.php');
 
 class Standard implements Action
 {
-    public static int $totalPoint = 0;
     /** @var array<int,array<int,int|string>> */
     public static array $hand;
+    public static int $totalPoint = 0;
+    public static int $splitTotalPoint = 0;
 
     public function __construct(private Card $card, private Deck $deck)
     {
