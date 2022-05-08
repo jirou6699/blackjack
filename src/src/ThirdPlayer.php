@@ -8,7 +8,7 @@ class ThirdPlayer extends UserType
 {
     public string $name = '鈴木さん';
     public int $totalPoint = 0;
-	public int $splitTotalPoint = 0;
+    public int $splitTotalPoint = 0;
     public array $hand;
 
     /**
@@ -29,9 +29,9 @@ class ThirdPlayer extends UserType
      */
     public function getHand(): void
     {
-		$this->totalPoint = $this->card->getPoint($this->hand);
-		echo $this->name . 'の現在の得点は' . $this->totalPoint . 'です' . PHP_EOL;
-		while (true) {
+        $this->totalPoint = $this->card->getPoint($this->hand);
+        echo $this->name . 'の現在の得点は' . $this->totalPoint . 'です' . PHP_EOL;
+        while (true) {
             if ($this->totalPoint < 17) {
                 $card = $this->deck->getOneCard();
                 echo $this->name . 'が引いたカードは' . $card[0] . 'の' . $card[1] . 'です。' . PHP_EOL;

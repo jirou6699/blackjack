@@ -7,10 +7,9 @@ require_once('Deck.php');
 
 abstract class UserType
 {
-
-	public function __construct(protected Card $card, protected Deck $deck)
-	{
-	}
+    public function __construct(protected Card $card, protected Deck $deck)
+    {
+    }
     /**
      * @param array<int,array<int,int|string>> $cards
      * @return void

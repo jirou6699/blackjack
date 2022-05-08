@@ -4,5 +4,5 @@ namespace blackJack;
 
 interface Action
 {
-	public function hitStay($hand, $name);
+    public function hitStay($hand, $name);
 }

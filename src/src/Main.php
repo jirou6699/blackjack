@@ -38,15 +38,15 @@ foreach ($players as $player) {
 
 $allPlayersPoint = [];
 foreach ($players as $player) {
-	if($player->totalPoint !== 0) {
-		$point = [$player->name => $player->totalPoint];
-		$allPlayersPoint[] = $point;
-	}
+    if ($player->totalPoint !== 0) {
+        $point = [$player->name => $player->totalPoint];
+        $allPlayersPoint[] = $point;
+    }
 
-	if ($player->splitTotalPoint > 0) {
-		$splitPoint = [$player->name => $player->splitTotalPoint];
-		$allPlayersPoint [] = $splitPoint;
-	}
+    if ($player->splitTotalPoint > 0) {
+        $splitPoint = [$player->name => $player->splitTotalPoint];
+        $allPlayersPoint [] = $splitPoint;
+    }
 }
 
 $handEvaluator = new HandEvaluator($allPlayersPoint);
