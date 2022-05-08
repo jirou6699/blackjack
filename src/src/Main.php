@@ -38,10 +38,14 @@ foreach ($players as $player) {
 
 $allPlayersPoint = [];
 foreach ($players as $player) {
-    // $name = $player->name;
 	if($player->totalPoint !== 0) {
-		$playerPoint = [$player->name => $player->totalPoint];
-		$allPlayersPoint[] = $playerPoint;
+		$point = [$player->name => $player->totalPoint];
+		$allPlayersPoint[] = $point;
+	}
+
+	if ($player->splitTotalPoint > 0) {
+		$splitPoint = [$player->name => $player->splitTotalPoint];
+		$allPlayersPoint [] = $splitPoint;
 	}
 }
 

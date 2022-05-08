@@ -8,6 +8,7 @@ class FourthPlayer extends UserType
 {
 	public string $name = 'おがたさん';
 	public int $totalPoint = 0;
+	public int $splitTotalPoint = 0;
 	public array $hand;
 
 	/**

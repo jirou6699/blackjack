@@ -8,6 +8,7 @@ class Standard implements Action
 {
 
 	static int $totalPoint = 0;
+	static array $hand;
 
 	public function __construct(private $card, private $deck)
 	{
@@ -15,14 +16,15 @@ class Standard implements Action
 
 	public function hitStay($hand, $name)
 	{
+		self::$hand = $hand;
 		while (true) {
-			self::$totalPoint = $this->card->getPoint($hand);
+			self::$totalPoint = $this->card->getPoint(self::$hand);
 			echo $name . 'の現在の得点は' . self::$totalPoint . 'です。カードを引きますか？（Y/N）' . PHP_EOL;
 			$string = trim(fgets(STDIN));
 			if ($string === 'Y') {
 				$card = $this->deck->getOneCard();
 				echo $name . 'の引いたカードは' . $card[0] . 'の' . $card[1] . 'です。' . PHP_EOL;
-				$hand[] = $card;
+				self::$hand[] = $card;
 			} elseif ($string === 'N') {
 				break;
 			}

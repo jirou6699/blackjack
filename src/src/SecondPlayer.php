@@ -8,6 +8,7 @@ class SecondPlayer extends UserType
 {
 	public string $name = 'さとうさん';
 	public int $totalPoint = 0;
+	public int $splitTotalPoint = 0;
 	public array $hand;
 
 	/**

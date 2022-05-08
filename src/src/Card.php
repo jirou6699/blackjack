@@ -27,10 +27,7 @@ class Card
      */
     public function getPoint(array $hand): int
     {
-        $convertToRanks = [];
-        foreach ($hand as $card) {
-            $convertToRanks[] = self::CARD_RANK[$card[1]];
-        }
+		$convertToRanks = $this->getRank($hand);
         asort($convertToRanks);
         $totalPoint = 0;
         foreach ($convertToRanks as $rank) {
@@ -43,8 +40,12 @@ class Card
         return $totalPoint;
     }
 
-    // public function getRank(): array
-    // {
-
-    // }
+    public function getRank(array $hand): array
+    {
+		$convertToRanks = [];
+		foreach ($hand as $card) {
+			$convertToRanks[] = self::CARD_RANK[$card[1]];
+		}
+		return $convertToRanks;
+    }
 }
