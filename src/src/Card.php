@@ -40,6 +40,10 @@ class Card
         return $totalPoint;
     }
 
+	/**
+	 * @param array<int,array<int,int|string>> $hand
+	 * @return array<int,int>
+	 */
     public function getRank(array $hand): array
     {
         $convertToRanks = [];

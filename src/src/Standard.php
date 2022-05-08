@@ -7,13 +7,18 @@ require_once('Action.php');
 class Standard implements Action
 {
     public static int $totalPoint = 0;
+    /** @var array<int,array<int,int|string>> */
     public static array $hand;
 
-    public function __construct(private $card, private $deck)
+    public function __construct(private Card $card, private Deck $deck)
     {
     }
 
-    public function hitStay($hand, $name)
+    /**
+     * @param array<int,array<int,int|string>> $hand
+     * @param string $name
+     */
+    public function hitStay($hand, $name): void
     {
         self::$hand = $hand;
         while (true) {

@@ -6,10 +6,11 @@ require_once('UserType.php');
 
 class Dealer extends UserType
 {
+    /** @var array<int,array<int,int|string>> */
+    public array $hand;
     public string $name = 'ディーラー';
     public int $totalPoint = 0;
     public int $splitTotalPoint = 0;
-    public array $hand;
 
     /**
      * @param array<int,array<int,int|string>> $cards
@@ -25,12 +26,8 @@ class Dealer extends UserType
         }
         $this->hand = $cards;
         echo PHP_EOL;
-        sleep(2);
     }
 
-    /**
-     * @param array<int,array<int,int|string>> $hand
-     */
     public function getHand(): void
     {
         echo 'ディーラーが引いた2枚目のカードは' . $this->hand[1][0] . 'の' . $this->hand[1][1] . 'です。' . PHP_EOL;
@@ -47,12 +44,10 @@ class Dealer extends UserType
             }
         }
         echo PHP_EOL;
-        sleep(3);
     }
 
     public function showTotalPoint(): void
     {
         echo 'ディーラーの得点は' . $this->totalPoint . 'です' . PHP_EOL;
-        sleep(1);
     }
 }

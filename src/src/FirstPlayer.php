@@ -11,10 +11,11 @@ require_once('HandAction.php');
 
 class FirstPlayer extends UserType
 {
+    /** @var array<int,array<int,int|string>> */
+    public array $hand;
     public string $name  = 'あなた';
     public int $totalPoint = 0;
     public int $splitTotalPoint = 0;
-    public array $hand;
 
     public function __construct(Card $card, Deck $deck)
     {
@@ -32,14 +33,14 @@ class FirstPlayer extends UserType
         }
         $this->hand = $cards;
         echo PHP_EOL;
-        sleep(2);
     }
-    /**
-     * @param array<int,array<int,int|string>> $hand
-     */
+
+
     public function getHand(): void
     {
         $cardRanks = $this->card->getRank($this->hand);
+        $primaryCard = $cardRanks[0];
+        $secondaryCard = $cardRanks[1];
         if (count($this->hand) === 2) {
             $type = $this->getAction($cardRanks);
             $action = new HandAction($type);
@@ -47,17 +48,22 @@ class FirstPlayer extends UserType
         }
         $this->hand = $type::$hand;
         $this->totalPoint = $type::$totalPoint;
-        if ($cardRanks[0] === $cardRanks[1]) {
+        if ($primaryCard === $secondaryCard) {
             $this->splitTotalPoint = $type::$splitTotalPoint;
         }
     }
 
+    /**
+     * @param array<int,int> $cardRanks
+     */
     private function getAction($cardRanks)
     {
+        $primaryCard = $cardRanks[0];
+        $secondaryCard = $cardRanks[1];
         echo '1. カードを一枚だけ追加して勝負 (ダブリング)' . PHP_EOL;
         echo '2. 勝負を降りる（サレンダー)' . PHP_EOL;
         echo '3. 特殊ルールは追加せず続ける(ノーマル)' . PHP_EOL;
-        if ($cardRanks[0] === $cardRanks[1]) {
+        if ($primaryCard === $secondaryCard) {
             echo '4. ２手に分けて勝負する(スプリッティング)' . PHP_EOL;
         }
         echo 'アクションを選択してください : ';
@@ -89,6 +95,5 @@ class FirstPlayer extends UserType
         } elseif($this->totalPoint > 0) {
             echo $this->name . 'の得点は' . $this->totalPoint . 'です' . PHP_EOL;
         }
-        sleep(1);
     }
 }

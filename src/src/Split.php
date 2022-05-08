@@ -8,13 +8,18 @@ class Split implements Action
 {
     public static int $totalPoint = 0;
     public static int $splitTotalPoint = 0;
+    /** @var array<int,array<int,int|string>> */
     public static array $hand;
 
-    public function __construct(private $card, private $deck)
+    public function __construct(private Card $card, private Deck $deck)
     {
     }
 
-    public function hitStay($hand, $name)
+    /**
+     * @param array<int,array<int,int|string>> $hand
+     * @param string $name
+     */
+    public function hitStay($hand, $name): void
     {
         self::$hand = $this->splitHand($hand);
         $totalPoints = [];
@@ -42,7 +47,11 @@ class Split implements Action
         self::$splitTotalPoint = $totalPoints[1];
     }
 
-    public function splitHand($hand)
+    /**
+     * @param array<int,array<int,int|string>> $hand
+     * @return array<int,array<int,int|string>> $hand
+     */
+    public function splitHand($hand): array
     {
         foreach ($hand as $index => $card) {
             $splitHand = [];

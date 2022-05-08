@@ -4,11 +4,14 @@ namespace blackJack;
 
 class HandEvaluator
 {
+    /**
+     * @param array<int, array<string, int>> $allPlayersPoint
+     */
     public function __construct(private array $allPlayersPoint)
     {
     }
 
-    public function getWinner()
+    public function getWinner(): void
     {
         $values = $this->convertToValues();
         $dealerValue = end($values);
@@ -30,7 +33,10 @@ class HandEvaluator
         echo 'ブラックジャックを終了します。' . PHP_EOL;
     }
 
-    public function convertToValues()
+    /**
+     * @return array<int, array<string, int>> $allPlayersPoint
+     */
+    public function convertToValues(): array
     {
         foreach ($this->allPlayersPoint as $index => $playerPoint) {
             foreach ($playerPoint as $name => $point) {

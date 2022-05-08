@@ -17,7 +17,6 @@ abstract class UserType
     abstract public function drawCards(array $cards);
 
     /**
-     * @param array<int,array<int,int|string>> $hand
      * @return void
      */
     abstract public function getHand();

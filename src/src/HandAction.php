@@ -8,6 +8,12 @@ class HandAction
     {
     }
 
+	/**
+	 * @param array<int,array<int,int|string>> $hand
+	 * @param string $name
+	 * @return void
+	 *
+	 */
     public function hitStay($hand, $name)
     {
         return $this->action->hitStay($hand, $name);

@@ -9,6 +9,7 @@ class SecondPlayer extends UserType
     public string $name = 'さとうさん';
     public int $totalPoint = 0;
     public int $splitTotalPoint = 0;
+	/** @var array<int,array<int,int|string>> */
     public array $hand;
 
     /**
@@ -21,12 +22,8 @@ class SecondPlayer extends UserType
         }
         $this->hand = $cards;
         echo PHP_EOL;
-        sleep(2);
     }
 
-    /**
-     * @param array<int,array<int,int|string>> $hand
-     */
     public function getHand(): void
     {
         $this->totalPoint = $this->card->getPoint($this->hand);
@@ -42,7 +39,6 @@ class SecondPlayer extends UserType
             }
         }
         echo PHP_EOL;
-        sleep(3);
     }
 
 
@@ -50,6 +46,5 @@ class SecondPlayer extends UserType
     public function showTotalPoint(): void
     {
         echo $this->name . 'の得点は' . $this->totalPoint . 'です' . PHP_EOL;
-        sleep(1);
     }
 }
