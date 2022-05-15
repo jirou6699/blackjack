@@ -25,22 +25,16 @@ class Game
         $dealer = new Dealer($this->hand);
         $allPlayers = [$player, $secondPlayer, $thirdPlayer, $dealer];
         $otherPlayers = [$secondPlayer, $thirdPlayer, $dealer];
-
-        echo 'ブラックジャックを開始します。' . PHP_EOL;
         $this->playerDrawCards($allPlayers);
         $this->dealerDrawCards($dealer);
         $this->askHitStay($player);
         $this->upCards($otherPlayers);
-        $playersScore = [];
-        foreach ($allPlayers as $player) {
-            $playersScore[] = $player->nameScore();
-        }
-        $handEvaluator = new HandEvaluator($playersScore);
-        $handEvaluator->getWinner();
+        $this->winner($allPlayers);
     }
 
     public function playerDrawCards($allPlayers)
     {
+        echo 'ブラックジャックを開始します。' . PHP_EOL;
         foreach ($allPlayers as $player) {
             $hand = $player->getHand();
             $name = $player->getName();
@@ -96,5 +90,16 @@ class Game
                 $score = $player->getCurrentScore();
             }
         }
+    }
+
+    public function winner($allPlayers)
+    {
+        $playersScore = [];
+        foreach ($allPlayers as $player) {
+            $playersScore[] = $player->nameScore();
+        }
+        $handEvaluator = new HandEvaluator($playersScore);
+        $handEvaluator->getWinner();
+        echo 'ブラックジャックを終了します。' . PHP_EOL;
     }
 }
