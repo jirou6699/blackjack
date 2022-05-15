@@ -19,4 +19,6 @@ abstract class UserType
     abstract public function getName();
 
     abstract public function getTotalScore();
+
+    abstract public function nameScore();
 }

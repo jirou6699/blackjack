@@ -4,9 +4,6 @@ namespace blackJack;
 
 class HandEvaluator
 {
-    /**
-     * @param array<int, array<string, int>> $allPlayersPoint
-     */
     public function __construct(private array $allPlayersPoint)
     {
     }

@@ -13,28 +13,18 @@ class FirstPlayer extends UserType
 
     public function __construct(private HandGenerator $handGenerator)
     {
-        // $this->hand = $handGenerator->getHand();
     }
 
     public function getHand(): array
     {
-
-		// その２↓
-		$this->hand = $this->handGenerator->getHand();
-		return $this->hand;
-		// 最初↓
-        // foreach ($this->hand as $card) {
-        //     echo $this->name . 'の引いたカードは' . $card[0] . 'の' . $card[1] . 'です。' . PHP_EOL;
-        // }
+        $this->hand = $this->handGenerator->getHand();
+        return $this->hand;
     }
 
     public function getCurrentScore(): int
     {
-		// その２↓
         $this->totalPoint = $this->handGenerator->currentScore($this->hand);
         return $this->totalPoint;
-		// 最初↓
-        // echo $this->name . 'の現在の得点は' . $this->totalPoint . 'です。';
     }
 
     public function addCard(): array
@@ -42,13 +32,7 @@ class FirstPlayer extends UserType
         $this->card = $this->handGenerator->addCard();
         $this->hand[] = $this->card;
         return $this->card;
-        // echo $this->name . 'の引いたカードは' . $this->card[0] . 'の' . $this->card[1] . 'です。' . PHP_EOL;
     }
-
-    // public function showTotalPoint(): void
-    // {
-    //     echo $this->name . 'の得点は' . $this->totalPoint . 'です' . PHP_EOL;
-    // }
 
     /**
      * @return string
@@ -64,5 +48,11 @@ class FirstPlayer extends UserType
     public function getTotalScore(): int
     {
         return $this->totalPoint;
+    }
+
+    public function nameScore(): array
+    {
+        $playerScore = [$this->name => $this->totalPoint];
+        return $playerScore;
     }
 }

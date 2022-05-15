@@ -2,9 +2,9 @@
 
 namespace blackJack;
 
-require_once ('Game.php');
-require_once ('Deck.php');
-require_once ('ScoreCounter.php');
+require_once('Game.php');
+require_once('Deck.php');
+require_once('ScoreCounter.php');
 
 $deck = new Deck();
 $score = new ScoreCounter();

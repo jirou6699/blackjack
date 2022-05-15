@@ -6,6 +6,7 @@ require_once('HandGenerator.php');
 require_once('FirstPlayer.php');
 require_once('OtherPlayer.php');
 require_once('Dealer.php');
+require_once('HandEvaluator.php');
 
 class Game
 {
@@ -22,7 +23,7 @@ class Game
         $secondPlayer = new OtherPlayer($this->hand, 'さとうさん');
         $thirdPlayer = new OtherPlayer($this->hand, '藤原さん');
         $dealer = new Dealer($this->hand);
-        $allPlayers = [$player, $secondPlayer, $thirdPlayer];
+        $allPlayers = [$player, $secondPlayer, $thirdPlayer, $dealer];
         $otherPlayers = [$secondPlayer, $thirdPlayer, $dealer];
 
         echo 'ブラックジャックを開始します。' . PHP_EOL;
@@ -30,6 +31,12 @@ class Game
         $this->dealerDrawCards($dealer);
         $this->askHitStay($player);
         $this->upCards($otherPlayers);
+        $playersScore = [];
+        foreach ($allPlayers as $player) {
+            $playersScore[] = $player->nameScore();
+        }
+        $handEvaluator = new HandEvaluator($playersScore);
+        $handEvaluator->getWinner();
     }
 
     public function playerDrawCards($allPlayers)
@@ -58,15 +65,15 @@ class Game
 
     public function askHitStay($player)
     {
-		while (true) {
-			$card = $player->addCard();
-			$score = $player->getCurrentScore();
-			$name = $player->getName();
-			echo $name . 'の現在の得点は' . $score . 'です。';
+        while (true) {
+            $score = $player->getCurrentScore();
+            $name = $player->getName();
+            echo $name . 'の現在の得点は' . $score . 'です。';
             echo 'カードを引きますか？（Y/N）' . PHP_EOL;
             $string = trim(fgets(STDIN));
             if ($string === 'Y') {
-				echo $name . 'の引いたカードは' . $card[0] . 'の' . $card[1] . 'です。' . PHP_EOL;
+                $card = $player->addCard();
+                echo $name . 'の引いたカードは' . $card[0] . 'の' . $card[1] . 'です。' . PHP_EOL;
             } elseif ($string === 'N') {
                 break;
             }
@@ -77,43 +84,17 @@ class Game
     {
         foreach ($otherPlayers as $player) {
             $score = $player->getCurrentScore();
+            echo $player->getName() . 'の現在の得点は' . $score . 'です。' . PHP_EOL;
             while (true) {
                 if ($score < 17) {
-                    $player->addCard();
+                    // $name = $player->getName();
+                    $card = $player->addCard();
+                    echo $player->getName() . 'の引いたカードは' . $card[0] . 'の' . $card[1] . 'です。' . PHP_EOL;
                 } elseif ($score >= 17) {
                     break;
                 }
+                $score = $player->getCurrentScore();
             }
         }
     }
-
-    public function showScore($player){
-    }
-
-    public function hit($player) {
-        $name = $player->getName();
-    }
-
-
-    // public function allPlayers(): array
-    // {
-    //     $hand = new HandGenerator($this->deck, $this->card);
-    //     $firstPlayer = new FirstPlayer($hand);
-    //     $secondPlayer = new OtherPlayer($hand, 'さとうさん');
-    //     $thirdPlayer = new OtherPlayer($hand, '藤原さん');
-
-    //     $allPlayers = [$firstPlayer, $secondPlayer, $thirdPlayer];
-    //     return $allPlayers;
-    // }
-
-    // public function withoutPlayer(): array
-    // {
-    //     $hand = new HandGenerator($this->deck, $this->card);
-    //     $secondPlayer = new OtherPlayer($hand, 'さとうさん');
-    //     $thirdPlayer = new OtherPlayer($hand, '藤原さん');
-    //     $dealer = new Dealer($hand);
-
-    //     $otherPlayers = [$secondPlayer, $thirdPlayer, $dealer];
-    //     return $otherPlayers;
-    // }
 }
