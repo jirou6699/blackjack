@@ -2,7 +2,7 @@
 
 namespace blackJack;
 
-class Card
+class ScoreCounter
 {
     private const RANK_AMOUNT = 10;
     private const CARD_RANK = [
@@ -25,7 +25,7 @@ class Card
      * @param array<int,array<int,int|string>> $hand
      * @return int
      */
-    public function getPoint(array $hand): int
+    public function getScore(array $hand): int
     {
         $convertToRanks = $this->getRank($hand);
         asort($convertToRanks);
@@ -40,10 +40,10 @@ class Card
         return $totalPoint;
     }
 
-	/**
-	 * @param array<int,array<int,int|string>> $hand
-	 * @return array<int,int>
-	 */
+    /**
+     * @param array<int,array<int,int|string>> $hand
+     * @return array<int,int>
+     */
     public function getRank(array $hand): array
     {
         $convertToRanks = [];

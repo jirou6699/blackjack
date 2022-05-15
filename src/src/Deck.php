@@ -22,29 +22,4 @@ class Deck
         }
         return $cards;
     }
-
-    /**
-     * @return array<int,array<int,int|string>>
-     */
-    public function getTwoCards(): array
-    {
-        $trumpCard = $this->trumpCards();
-        $cardNumbers = array_rand($trumpCard, 2);
-        $hand = [];
-        foreach ($cardNumbers as $num) {
-            $hand[] = $trumpCard[$num];
-        }
-        return $hand;
-    }
-
-    /**
-     * @return array<int,int|string>
-     */
-    public function getOneCard(): array
-    {
-        $trumpCard = $this->trumpCards();
-        $addCardNumber = array_rand($trumpCard, 1);
-        $addCard = $trumpCard[$addCardNumber];
-        return $addCard;
-    }
 }

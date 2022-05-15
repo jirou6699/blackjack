@@ -7,17 +7,16 @@ require_once('Deck.php');
 
 abstract class UserType
 {
-    public function __construct(protected Card $card, protected Deck $deck)
-    {
-    }
-    /**
-     * @param array<int,array<int,int|string>> $cards
-     * @return void
-     */
-    abstract public function drawCards(array $cards);
-
     /**
      * @return void
      */
     abstract public function getHand();
+
+    abstract public function addCard();
+
+    abstract public function getCurrentScore();
+
+    abstract public function getName();
+
+    abstract public function getTotalScore();
 }
