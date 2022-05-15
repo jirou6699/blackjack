@@ -39,6 +39,6 @@ class HandGenerator
      */
     public function currentScore($hand): int
     {
-        return $this->card->getPoint($hand);
+        return $this->scoreCounter->getScore($hand);
     }
 }

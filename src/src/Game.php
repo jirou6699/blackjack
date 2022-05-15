@@ -11,9 +11,9 @@ class Game
 {
     private $hand;
 
-    public function __construct(private Deck $deck, private Card $card)
+    public function __construct(private Deck $deck, private ScoreCounter $scoreCounter)
     {
-        $this->hand = new HandGenerator($deck, $card);
+        $this->hand = new HandGenerator($deck, $scoreCounter);
     }
 
     public function start(): void
@@ -58,12 +58,15 @@ class Game
 
     public function askHitStay($player)
     {
-        while (true) {
-            $this->showScore($player);
+		while (true) {
+			$card = $player->addCard();
+			$score = $player->getCurrentScore();
+			$name = $player->getName();
+			echo $name . 'の現在の得点は' . $score . 'です。';
             echo 'カードを引きますか？（Y/N）' . PHP_EOL;
             $string = trim(fgets(STDIN));
             if ($string === 'Y') {
-                $this->hit($player);
+				echo $name . 'の引いたカードは' . $card[0] . 'の' . $card[1] . 'です。' . PHP_EOL;
             } elseif ($string === 'N') {
                 break;
             }
@@ -85,15 +88,10 @@ class Game
     }
 
     public function showScore($player){
-        $score = $player->getCurrentScore();
-        $name = $player->getName();
-        echo $name . 'の現在の得点は' . $score . 'です。';
     }
 
     public function hit($player) {
-        $card = $player->addCard();
         $name = $player->getName();
-        echo $name . 'の引いたカードは' . $card[0] . 'の' . $card[1] . 'です。' . PHP_EOL;
     }
 
 

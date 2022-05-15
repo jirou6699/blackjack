@@ -11,7 +11,7 @@ class FirstPlayer extends UserType
     private string $name = 'あなた';
     private int $totalPoint;
 
-    public function __construct(private Deck $deck, private ScoreCounter $scoreCounter)
+    public function __construct(private HandGenerator $handGenerator)
     {
         // $this->hand = $handGenerator->getHand();
     }
