@@ -7,7 +7,7 @@ namespace blackJack\Test;
 use PHPUnit\Framework\TestCase;
 use blackJack\ScoreCounter;
 
-require_once(__DIR__ . '/../src/Card.php');
+require_once(__DIR__ . '/../lib/Card.php');
 
 final class ScoreCounterTest extends TestCase
 {

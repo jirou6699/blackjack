@@ -7,9 +7,9 @@ namespace blackJack\Test;
 use PHPUnit\Framework\TestCase;
 use blackJack\HandGenerator;
 use blackJack\Deck;
-use blackJack\Card;
+use blackJack\ScoreCounter;
 
-require_once(__DIR__ . '/../src/HandGenerator.php');
+require_once(__DIR__ . '/../lib/HandGenerator.php');
 
 
 final class HandGeneratorTest extends TestCase
@@ -17,7 +17,7 @@ final class HandGeneratorTest extends TestCase
     public function testGetTwoCards(): void
     {
         $deck = new Deck();
-        $card = new Card();
+        $card = new ScoreCounter();
         $hand = new HandGenerator($deck, $card);
         $this->assertCount(2, $hand->getHand());
     }
@@ -25,7 +25,7 @@ final class HandGeneratorTest extends TestCase
     public function testGetOneCard(): void
     {
         $deck = new Deck();
-        $card = new Card();
+        $card = new ScoreCounter();
         $hand = new HandGenerator($deck, $card);
         $this->assertCount(2, $hand->addCard());
     }

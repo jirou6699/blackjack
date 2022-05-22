@@ -7,7 +7,7 @@ namespace blackJack\Test;
 use PHPUnit\Framework\TestCase;
 use blackJack\Deck;
 
-require_once(__DIR__ . '/../src/Deck.php');
+require_once(__DIR__ . '/../lib/Deck.php');
 
 
 final class DeckTest extends TestCase
