@@ -3,6 +3,7 @@
 namespace blackJack;
 
 require_once('UserType.php');
+require_once('ScoreCounter.php');
 
 class SubPlayer extends UserType
 {
@@ -33,7 +34,8 @@ class SubPlayer extends UserType
 
     public function getCurrentScore(): int
     {
-        $this->score = $this->handGenerator->currentScore($this->hand);
+        $scoreCounter = new ScoreCounter();
+        $this->score = $scoreCounter->getScore($this->hand);
         return $this->score;
     }
 

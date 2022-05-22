@@ -69,8 +69,8 @@ class Game
             $string = trim(fgets(STDIN));
             if ($string === 'Y') {
                 $card = $player->addCard();
-                $player->setHand($card);
                 echo $player->getName() . 'の引いたカードは' . $card[0] . 'の' . $card[1] . 'です。' . PHP_EOL;
+                $player->setHand($card);
             } elseif ($string === 'N') {
                 break;
             }
@@ -88,8 +88,8 @@ class Game
             while (true) {
                 if ($player->getCurrentScore() < 17) {
                     $card = $player->addCard();
-                    $player->setHand($card);
                     echo $player->getName() . 'の引いたカードは' . $card[0] . 'の' . $card[1] . 'です。' . PHP_EOL;
+                    $player->setHand($card);
                 } elseif ($player->getCurrentScore() >= 17) {
                     break;
                 }
