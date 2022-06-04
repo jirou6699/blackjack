@@ -3,7 +3,7 @@
 namespace blackJack;
 
 require_once('HandGenerator.php');
-require_once('FirstPlayer.php');
+require_once('Player.php');
 require_once('SubPlayer.php');
 require_once('Dealer.php');
 
@@ -16,7 +16,7 @@ class Game
     public function start(): void
     {
         $handGenerator = new HandGenerator($this->deck, $this->scoreCounter);
-        $player = new FirstPlayer($handGenerator);
+        $player = new Player($handGenerator);
         $secondPlayer = new SubPlayer($handGenerator, 'さとうさん');
         $thirdPlayer = new SubPlayer($handGenerator, '藤原さん');
         $dealer = new Dealer($handGenerator);

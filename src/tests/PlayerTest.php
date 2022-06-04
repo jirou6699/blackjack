@@ -5,42 +5,42 @@ declare(strict_types=1);
 namespace blackJack\Test;
 
 use blackJack\HandGenerator;
-use blackJack\FirstPlayer;
+use blackJack\Player;
 use blackJack\Deck;
 use blackJack\ScoreCounter;
 use PHPUnit\Framework\TestCase;
 
-require_once(__DIR__ . '/../lib/FirstPlayer.php');
+require_once(__DIR__ . '/../lib/Player.php');
 
 
-final class FirstPlayerTest extends TestCase
+final class PlayerTest extends TestCase
 {
     public function testGetName(): void
     {
         $handGenerator = new HandGenerator(new Deck(), new ScoreCounter());
-        $firstPlayer = new FirstPlayer($handGenerator);
-        $this->assertSame('あなた', $firstPlayer->getName());
+        $Player = new Player($handGenerator);
+        $this->assertSame('あなた', $Player->getName());
     }
 
     public function testGetHand(): void
     {
         $handGenerator = new HandGenerator(new Deck(), new ScoreCounter());
-        $firstPlayer = new FirstPlayer($handGenerator);
-        $this->assertCount(2, $firstPlayer->getHand());
+        $Player = new Player($handGenerator);
+        $this->assertCount(2, $Player->getHand());
     }
 
     public function testAddCard(): void
     {
         $handGenerator = new HandGenerator(new Deck(), new ScoreCounter());
-        $firstPlayer = new FirstPlayer($handGenerator);
-        $this->assertCount(2, $firstPlayer->addCard());
+        $Player = new Player($handGenerator);
+        $this->assertCount(2, $Player->addCard());
     }
 
     public function testSetHand(): void
     {
         $card = ['ハート', 2];
         $handGenerator = new HandGenerator(new Deck(), new ScoreCounter());
-        $firstPlayer = new FirstPlayer($handGenerator);
-        $this->assertCount(3, $firstPlayer->setHand($card));
+        $Player = new Player($handGenerator);
+        $this->assertCount(3, $Player->setHand($card));
     }
 }
