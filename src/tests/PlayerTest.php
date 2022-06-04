@@ -18,21 +18,21 @@ final class PlayerTest extends TestCase
     public function testGetName(): void
     {
         $handGenerator = new HandGenerator(new Deck(), new ScoreCounter());
-        $player = new Player($handGenerator);
+        $player = new Player($handGenerator, 'あなた');
         $this->assertSame('あなた', $player->getName());
     }
 
     public function testGetHand(): void
     {
         $handGenerator = new HandGenerator(new Deck(), new ScoreCounter());
-        $player = new Player($handGenerator);
+        $player = new Player($handGenerator, 'あなた');
         $this->assertCount(2, $player->getHand());
     }
 
     public function testAddCard(): void
     {
         $handGenerator = new HandGenerator(new Deck(), new ScoreCounter());
-        $player = new Player($handGenerator);
+        $player = new Player($handGenerator, 'あなた');
         $this->assertCount(2, $player->addCard());
     }
 }

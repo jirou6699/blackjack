@@ -16,10 +16,10 @@ class Game
     public function start(): void
     {
         $handGenerator = new HandGenerator($this->deck, $this->scoreCounter);
-        $player = new Player($handGenerator);
+        $player = new Player($handGenerator, 'あなた');
         $secondPlayer = new SubPlayer($handGenerator, 'さとうさん');
         $thirdPlayer = new SubPlayer($handGenerator, '藤原さん');
-        $dealer = new Dealer($handGenerator);
+        $dealer = new Dealer($handGenerator, 'ディーラー');
         $players = [$player, $secondPlayer, $thirdPlayer, $dealer];
         echo 'ブラックジャックを開始します。' . PHP_EOL;
         $this->playerDrawCards($players);
