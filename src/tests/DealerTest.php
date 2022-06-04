@@ -35,12 +35,4 @@ final class DealerTest extends TestCase
         $dealer = new Dealer($handGenerator);
         $this->assertCount(2, $dealer->addCard());
     }
-
-    public function testSetHand(): void
-    {
-        $card = ['ハート', 2];
-        $handGenerator = new HandGenerator(new Deck(), new ScoreCounter());
-        $dealer = new Dealer($handGenerator);
-        $this->assertCount(3, $dealer->setHand($card));
-    }
 }

@@ -14,12 +14,12 @@ require_once(__DIR__ . '/../lib/HandGenerator.php');
 
 final class HandGeneratorTest extends TestCase
 {
-    public function testGetTwoCards(): void
+    public function testHand(): void
     {
         $deck = new Deck();
         $card = new ScoreCounter();
-        $hand = new HandGenerator($deck, $card);
-        $this->assertCount(2, $hand->getHand());
+        $handGenerator = new HandGenerator($deck, $card);
+        $this->assertCount(2, $handGenerator->hand());
     }
 
     public function testGetOneCard(): void

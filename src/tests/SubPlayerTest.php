@@ -35,12 +35,4 @@ final class SubPlayerTest extends TestCase
         $subPlayer = new SubPlayer($handGenerator, '片桐さん');
         $this->assertCount(2, $subPlayer->addCard());
     }
-
-    public function testSetHand(): void
-    {
-        $card = ['ハート', 2];
-        $handGenerator = new HandGenerator(new Deck(), new ScoreCounter());
-        $subPlayer = new SubPlayer($handGenerator, '片桐さん');
-        $this->assertCount(3, $subPlayer->setHand($card));
-    }
 }
