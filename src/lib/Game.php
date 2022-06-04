@@ -103,7 +103,7 @@ class Game
     public function showPlayersScore($players): void
     {
         foreach ($players as $player) {
-            echo $player->getName() . 'さんの点数は' . $player->getScore() . 'です。' . PHP_EOL;
+            echo $player->getName() . 'の点数は' . $player->getScore() . 'です。' . PHP_EOL;
         }
     }
 

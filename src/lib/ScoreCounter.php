@@ -25,9 +25,9 @@ class ScoreCounter
      * @param array<int,array<int,int|string>> $hand
      * @return int
      */
-    public function getScore(array $hand): int
+    public function score(array $hand): int
     {
-        $convertToRanks = $this->getRank($hand);
+        $convertToRanks = $this->rank($hand);
         asort($convertToRanks);
         $totalPoint = 0;
         foreach ($convertToRanks as $rank) {
@@ -44,7 +44,7 @@ class ScoreCounter
      * @param array<int,array<int,int|string>> $hand
      * @return array<int,int>
      */
-    public function getRank(array $hand): array
+    public function rank(array $hand): array
     {
         $convertToRanks = [];
         foreach ($hand as $card) {

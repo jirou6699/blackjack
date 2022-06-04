@@ -11,7 +11,7 @@ class HandGenerator
     /**
      * @return array<int,array<int,int|string>>
      */
-    public function getHand(): array
+    public function hand(): array
     {
         $trumpCard = $this->deck->trumpCards();
         $cardNumbers = array_rand($trumpCard, 2);
@@ -39,6 +39,6 @@ class HandGenerator
      */
     public function currentScore($hand): int
     {
-        return $this->scoreCounter->getScore($hand);
+        return $this->scoreCounter->score($hand);
     }
 }

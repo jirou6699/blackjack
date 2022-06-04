@@ -16,7 +16,7 @@ class SubPlayer extends UserType
 
     public function __construct(private HandGenerator $handGenerator, private string $playerName)
     {
-        $this->hand = $this->handGenerator->getHand();
+        $this->hand = $this->handGenerator->hand();
     }
 
     /**
@@ -35,7 +35,7 @@ class SubPlayer extends UserType
     public function getCurrentScore(): int
     {
         $scoreCounter = new ScoreCounter();
-        $this->score = $scoreCounter->getScore($this->hand);
+        $this->score = $scoreCounter->score($this->hand);
         return $this->score;
     }
 

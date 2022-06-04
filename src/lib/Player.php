@@ -18,7 +18,7 @@ class Player extends UserType
 
     public function __construct(private HandGenerator $handGenerator)
     {
-        $this->hand = $this->handGenerator->getHand();
+        $this->hand = $this->handGenerator->hand();
     }
     /**
      * @return string
@@ -36,7 +36,7 @@ class Player extends UserType
     public function getCurrentScore(): int
     {
         $scoreCounter = new ScoreCounter();
-        $this->score = $scoreCounter->getScore($this->hand);
+        $this->score = $scoreCounter->score($this->hand);
         return $this->score;
     }
 
