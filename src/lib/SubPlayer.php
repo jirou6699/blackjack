@@ -4,7 +4,7 @@ namespace blackJack;
 
 require_once('ScoreCounter.php');
 
-class SubPlayer implements UserType
+class SubPlayer extends UserType
 {
     /** @var array<int,array<int,int|string>> */
     private array $hand;

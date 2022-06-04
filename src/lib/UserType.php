@@ -5,35 +5,35 @@ namespace blackJack;
 require_once('ScoreCounter.php');
 require_once('Deck.php');
 
-interface UserType
+abstract class UserType
 {
     /**
      * @return string
      */
-    public function getName();
+    abstract public function getName();
 
     /**
      * @return array<int,array<int,int|string>>
      */
-    public function getHand();
+    abstract public function getHand();
 
     /**
      * @return array<int,int|string>
      */
-    public function addCard();
+    abstract public function addCard();
 
     /**
      * @return int
      */
-    public function getCurrentScore();
+    abstract public function getCurrentScore();
 
     /**
      * @return int
      */
-    public function getScore();
+    abstract public function getScore();
 
     /**
      * @return int
      */
-    public function value();
+    abstract public function value();
 }

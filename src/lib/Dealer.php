@@ -5,7 +5,7 @@ namespace blackJack;
 require_once('UserType.php');
 require_once('ScoreCounter.php');
 
-class Dealer implements UserType
+class Dealer extends UserType
 {
     /** @var array<int,array<int,int|string>> */
     private array $hand;

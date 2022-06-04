@@ -30,7 +30,6 @@ class Game
         $this->winner($players, $dealer);
         echo 'ブラックジャックを終了します。' . PHP_EOL;
     }
-
     /**
      * @param array<int,object> $players
      */
