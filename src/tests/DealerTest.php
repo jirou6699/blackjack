@@ -19,7 +19,7 @@ final class DealerTest extends TestCase
     {
         $handGenerator = new HandGenerator(new Deck(), new ScoreCounter());
         $dealer = new Dealer($handGenerator, 'ディーラー');
-        $this->assertSame('ディーラー', $dealer->getName());
+        $this->assertSame('ディーラー', $dealer->name());
     }
 
     public function testGetHand(): void

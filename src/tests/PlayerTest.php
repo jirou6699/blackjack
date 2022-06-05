@@ -19,7 +19,7 @@ final class PlayerTest extends TestCase
     {
         $handGenerator = new HandGenerator(new Deck(), new ScoreCounter());
         $player = new Player($handGenerator, 'あなた');
-        $this->assertSame('あなた', $player->getName());
+        $this->assertSame('あなた', $player->name());
     }
 
     public function testGetHand(): void
